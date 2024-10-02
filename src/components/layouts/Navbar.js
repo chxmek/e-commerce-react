@@ -24,7 +24,13 @@ function Navbar() {
   return (
     <div>
       <h1>Navbar</h1>
-      <Menu mode="horizontal" items={items} />;
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
+      ;
     </div>
   );
 }
