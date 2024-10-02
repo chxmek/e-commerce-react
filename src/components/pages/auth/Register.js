@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import register from "../../functions/auth";
+import { register } from "../../functions/auth";
 
 export default function Register() {
   const [value, setValue] = useState({
