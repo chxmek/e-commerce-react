@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../../functions/auth";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [value, setValue] = useState({
@@ -8,6 +9,15 @@ export default function Login() {
     password: "",
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function roleBaseRedirect(role) {
+    if (role === "admin") {
+      navigate("/admin/index");
+    } else {
+      navigate("/user/index");
+    }
+  }
 
   function handleChange(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -28,6 +38,7 @@ export default function Login() {
           },
         });
         localStorage.setItem("token", res.data.token);
+        roleBaseRedirect(res.data.payload.user.role);
       })
       .catch((err) => {
         alert(err.response.data);
