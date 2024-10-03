@@ -7,13 +7,23 @@ import Navbar from "./components/layouts/Navbar";
 import HomeAdmin from "./components/pages/admin/Home";
 import HomeUser from "./components/pages/user/Home";
 import { currentUser } from "./components/functions/auth";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
   const idtoken = localStorage.token;
   if (idtoken) {
     currentUser(idtoken)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            token: idtoken,
+            username: res.data.username,
+            role: res.data.role,
+          },
+        });
       })
       .catch((err) => {
         console.log(err);
