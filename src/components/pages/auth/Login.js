@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { login } from "../../functions/auth";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
   const [value, setValue] = useState({
     username: "",
     password: "",
   });
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -17,6 +19,15 @@ export default function Login() {
     return login(value)
       .then((res) => {
         console.log(res.data);
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            token: res.data.token,
+            username: res.data.payload.user.username,
+            role: res.data.payload.user.role,
+          },
+        });
+        localStorage.setItem("token", res.data.token);
       })
       .catch((err) => {
         alert(err.response.data);
