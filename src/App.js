@@ -8,6 +8,7 @@ import HomeAdmin from "./components/pages/admin/Home";
 import HomeUser from "./components/pages/user/Home";
 import { currentUser } from "./components/functions/auth";
 import { useDispatch } from "react-redux";
+import UserRoute from "./components/routes/UserRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin/index" element={<HomeAdmin />} />
-        <Route path="/user/index" element={<HomeUser />} />
+        <Route
+          path="/user/index"
+          element={
+            <UserRoute>
+              <HomeUser />
+            </UserRoute>
+          }
+        />
       </Routes>
     </div>
   );
