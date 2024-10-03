@@ -4,7 +4,7 @@ import { UserAddOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
   // const [current, setCurrent] = useState("mail");
   // const onClick = (e) => {
   //   console.log("click ", e);
@@ -24,7 +24,6 @@ function Navbar() {
   ];
   return (
     <div>
-      <h1>Navbar</h1>
       <Menu
         // onClick={onClick}
         // selectedKeys={[current]}
@@ -34,5 +33,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;
